@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "914930062031",
+    "project_id": "actividad1elena",
+    "storage_bucket": "actividad1elena.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914930062031:android:58add40320dbb2cfbe9dba",
+        "android_client_info": {
+          "package_name": "practica1.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi5o6Jqw2aROsAXAxLX-mXzH0riNqTkzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
