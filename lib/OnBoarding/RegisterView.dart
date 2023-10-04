@@ -6,6 +6,8 @@ class RegisterView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
+    late BuildContext _context;
+
     void onClickAceptar(){
 
     }

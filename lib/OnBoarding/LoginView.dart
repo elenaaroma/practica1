@@ -3,17 +3,21 @@ import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget{
 
+  late BuildContext _context;
+
   void onClickAceptar(){
 
   }
 
   void onClickRegistrar(){
-
+    Navigator.of(_context).pushNamed("/registergview");
   }
 
 
   @override
   Widget build(BuildContext context) {
+
+    _context = context;
 
     return Scaffold(
 
