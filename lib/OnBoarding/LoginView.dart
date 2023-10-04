@@ -3,6 +3,15 @@ import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget{
 
+  void onClickAceptar(){
+
+  }
+
+  void onClickRegistrar(){
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -36,6 +45,15 @@ class LoginView extends StatelessWidget{
               obscureText: true,
             ),
           ),
+
+          Row(mainAxisAlignment: MainAxisAlignment.center,
+
+            children: [
+              TextButton(onPressed: onClickAceptar, child: Text("Aceptar")),
+              TextButton(onPressed: onClickRegistrar, child: Text("Registrar")),
+            ],
+
+          )
 
         ],
       ),
