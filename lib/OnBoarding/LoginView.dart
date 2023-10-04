@@ -27,6 +27,16 @@ class LoginView extends StatelessWidget{
             ),
           ),
 
+          Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
+            child: TextFormField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Escribe tu contrsaeña'
+              ),
+              obscureText: true,
+            ),
+          ),
+
         ],
       ),
 
