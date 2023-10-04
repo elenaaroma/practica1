@@ -34,6 +34,17 @@ class RegisterView extends StatelessWidget{
               obscureText: true,
             ),
           ),
+
+          Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
+            child: TextFormField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Repite tu contrsaeña'
+              ),
+              obscureText: true,
+            ),
+          ),
+
         ],
       ),
 
