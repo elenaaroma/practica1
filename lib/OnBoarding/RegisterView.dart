@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 class RegisterView extends StatelessWidget{
 
-  @override
-  Widget build(BuildContext context) {
+
 
     late BuildContext _context;
 
@@ -13,8 +12,13 @@ class RegisterView extends StatelessWidget{
     }
 
     void onClickAtras(){
-
+      Navigator.of(_context).pushNamed("/logingview");
     }
+
+    @override
+    Widget build(BuildContext context) {
+
+    _context = context;
 
     return Scaffold(
       appBar: AppBar(
