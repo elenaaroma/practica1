@@ -6,6 +6,14 @@ class RegisterView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
+    void onClickAceptar(){
+
+    }
+
+    void onClickAtras(){
+
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Register'),
@@ -44,6 +52,15 @@ class RegisterView extends StatelessWidget{
               obscureText: true,
             ),
           ),
+
+          Row(mainAxisAlignment: MainAxisAlignment.center,
+
+            children: [
+              TextButton(onPressed: onClickAceptar, child: Text("Aceptar")),
+              TextButton(onPressed: onClickAtras, child: Text("Atras")),
+            ],
+
+          )
 
         ],
       ),
