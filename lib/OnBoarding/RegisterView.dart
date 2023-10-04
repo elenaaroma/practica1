@@ -13,6 +13,22 @@ class RegisterView extends StatelessWidget{
         shadowColor: Colors.red[300],
         backgroundColor: Colors.deepOrange[100],
       ),
+
+      body: Column( mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Escribe tu usuario'
+              ),
+            ),
+          ),
+
+        ],
+      ),
+
+
     );
 
   }
