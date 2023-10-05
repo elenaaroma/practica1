@@ -10,9 +10,12 @@ class RegisterView extends StatelessWidget{
     TextEditingController passwordController=TextEditingController();
     TextEditingController respassController=TextEditingController();
 
-    SnackBar snackBar = SnackBar(
-      content: Text('Las contraseñas no son iguales '),
-    );
+    throwSnackBar(String error){
+      SnackBar snackBar = SnackBar(
+        content: Text(error),
+      );
+      ScaffoldMessenger.of(_context).showSnackBar(snackBar);
+    }
 
     void onClickCancelar(){
       Navigator.of(_context).pushNamed("/loginview");
@@ -31,15 +34,17 @@ class RegisterView extends StatelessWidget{
         } on FirebaseAuthException catch (e) {
           if (e.code == 'weak-password') {
             print('La contraseña es muy debil');
+            throwSnackBar('La contraseña es muy debil');
           } else if (e.code == 'email-already-in-use') {
             print('Este email ya esta en uso');
+            throwSnackBar('Este email ya esta en uso');
           }
         } catch (e) {
           print(e);
         }
       }
       else{
-        ScaffoldMessenger.of(_context).showSnackBar(snackBar);
+        throwSnackBar('Las contraseñas no son iguales');
       }
     }
 
