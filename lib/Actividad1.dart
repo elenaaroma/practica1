@@ -10,13 +10,13 @@ class Actividad1 extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      title: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      title: "Actividad 1",
         routes: {
-          '/logingview': (context)=> LoginView(),
+          '/loginview': (context)=> LoginView(),
           '/registergview': (context)=> RegisterView(),
           '/homeview': (context)=> HomeView()
         },
-      initialRoute: '/logingview',
+      initialRoute: '/loginview',
       debugShowCheckedModeBanner: false,
     );
 

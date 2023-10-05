@@ -29,38 +29,45 @@ class LoginView extends StatelessWidget{
         backgroundColor: Colors.deepOrange[100],
       ),
 
-      body: Column( mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Escribe tu usuario'
-              ),
+      body:
+
+          Padding ( padding: EdgeInsets.only(top: 16),
+            child:
+            Column(
+              children: [
+                Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Escribe tu usuario'
+                    ),
+                  ),
+                ),
+
+                Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Escribe tu contrsaeña'
+                    ),
+                    obscureText: true,
+                  ),
+                ),
+
+                Row(mainAxisAlignment: MainAxisAlignment.center,
+
+                  children: [
+                    TextButton(onPressed: onClickAceptar, child: Text("Aceptar")),
+                    TextButton(onPressed: onClickRegistrar, child: Text("Registrar")),
+                  ],
+
+                )
+
+              ],
             ),
           ),
 
-          Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-            child: TextFormField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Escribe tu contrsaeña'
-              ),
-              obscureText: true,
-            ),
-          ),
 
-          Row(mainAxisAlignment: MainAxisAlignment.center,
-
-            children: [
-              TextButton(onPressed: onClickAceptar, child: Text("Aceptar")),
-              TextButton(onPressed: onClickRegistrar, child: Text("Registrar")),
-            ],
-
-          )
-
-        ],
-      ),
 
 
     );
