@@ -21,7 +21,7 @@ class RegisterView extends StatelessWidget{
       Navigator.of(_context).pushNamed("/loginview");
     }
     void onClickAceptar() async {
-      //print("DEBUG>>>> "+usernameController.text);
+
       if(passwordController.text==respassController.text) {
         try {
           await FirebaseAuth.instance.createUserWithEmailAndPassword(

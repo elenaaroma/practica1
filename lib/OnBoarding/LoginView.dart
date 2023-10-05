@@ -1,18 +1,45 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget{
 
   late BuildContext _context;
 
-  void onClickAceptar(){
+  TextEditingController usernameController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
 
+  throwSnackBar(String error){
+    SnackBar snackBar = SnackBar(
+      content: Text(error),
+    );
+    ScaffoldMessenger.of(_context).showSnackBar(snackBar);
   }
 
   void onClickRegistrar(){
     Navigator.of(_context).pushNamed("/registergview");
   }
 
+  void onClickAceptar() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: usernameController.text,
+        password: passwordController.text,
+      );
+
+      Navigator.of(_context).pushNamed('/homeview');
+
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email'){
+        print('Este usuario no es valido');
+        throwSnackBar('Este usuario no es valido');
+      }
+      else if (e.code == 'invalid-login-credentials') {
+        print('Esta contraseña y usuario no son correctos');
+        throwSnackBar('Esta contraseña y usuario no son correctos');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +64,7 @@ class LoginView extends StatelessWidget{
               children: [
                 Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
                   child: TextField(
+                    controller: usernameController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Escribe tu usuario'
@@ -46,6 +74,7 @@ class LoginView extends StatelessWidget{
 
                 Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
                   child: TextFormField(
+                    controller: passwordController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Escribe tu contrsaeña'
@@ -62,7 +91,6 @@ class LoginView extends StatelessWidget{
                   ],
 
                 )
-
               ],
             ),
           ),
