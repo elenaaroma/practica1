@@ -1,4 +1,4 @@
-import 'package:app/OnBoarding/HomeView.dart';
+import 'package:app/Main/HomeView.dart';
 import 'package:app/OnBoarding/LoginView.dart';
 import 'package:app/OnBoarding/RegisterView.dart';
 import 'package:flutter/cupertino.dart';

@@ -27,7 +27,8 @@ class LoginView extends StatelessWidget{
         password: passwordController.text,
       );
 
-      Navigator.of(_context).pushNamed('/homeview');
+      Navigator.of(_context).popAndPushNamed('/homeview');
+
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email'){
