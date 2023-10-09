@@ -1,16 +1,34 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class SplashView extends StatelessWidget{
+class SplashView extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _SplsahViewState();
+  }
+}
+
+class _SplsahViewState extends State<SplashView>{
 
 late BuildContext  _context;
 
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkSesion();
+  }
 
   void checkSesion() async{
-
-  await Future.delayed(Duration(seconds: 5));
-  Navigator.of(_context).popAndPushNamed("/loginview");
-  
+  await Future.delayed(Duration(seconds: 3));
+    if(FirebaseAuth.instance.currentUser != null) {
+      Navigator.of(_context).popAndPushNamed("/homeview");
+    }
+    else {
+      Navigator.of(_context).popAndPushNamed("/loginview");
+    }
   }
 
   @override

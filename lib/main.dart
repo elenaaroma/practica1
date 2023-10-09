@@ -6,13 +6,17 @@ import 'firebase_options.dart';
 
 void main() async{
 
+  WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  Actividad1 actividad1 = Actividad1();
   runApp(Actividad1());
-
 }
+
+
 
 
 
