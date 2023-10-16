@@ -10,9 +10,16 @@ class KTTextField extends StatelessWidget{
 
   TextEditingController tecController = TextEditingController();
 
+  double dPaddingH;
+  double dPaddingV;
+
+
+
   KTTextField({Key? key,this.sHint = "",
     required this.tecController,
     this.blIsPassword = false
+    this.dPaddingH = 60,
+    this.dPaddingV = 16,
   }) : super(key: key);
 
 
@@ -20,8 +27,10 @@ class KTTextField extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
  
-    return Row(
-      children: [
+    return
+      Padding(padding:  EdgeInsets.symmetric(horizontal: dPaddingH, vertical:dPaddingV),
+        child:
+      Row(children: [
         Image.asset("resources/gatete.jpg" , width: 50, height: 50),
         Flexible(
             child:  TextFormField(
@@ -45,8 +54,9 @@ class KTTextField extends StatelessWidget{
          )
         )
 
-      ],
-    );
+       ],
+       ),
+      );
     
   }
   
