@@ -2,6 +2,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../Custom/KTTextField.dart';
+
 class LoginView extends StatelessWidget{
 
   late BuildContext _context;
@@ -83,6 +85,8 @@ class LoginView extends StatelessWidget{
                     obscureText: true,
                   ),
                 ),
+
+                KTTextField(sHint: 'Holi'),
 
                 Row(mainAxisAlignment: MainAxisAlignment.center,
 

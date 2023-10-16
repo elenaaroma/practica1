@@ -24,7 +24,6 @@ late BuildContext  _context;
   void checkSesion() async{
   await Future.delayed(Duration(seconds: 3));
     if(FirebaseAuth.instance.currentUser != null) {
-
       Navigator.of(_context).popAndPushNamed("/homeview");
     }
     else {
