@@ -1,5 +1,6 @@
 import 'package:app/Main/HomeView.dart';
 import 'package:app/OnBoarding/LoginView.dart';
+import 'package:app/OnBoarding/PerfilView.dart';
 import 'package:app/OnBoarding/RegisterView.dart';
 import 'package:app/Splash/SplashView.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,9 +17,10 @@ class Actividad1 extends StatelessWidget {
           '/loginview': (context)=> LoginView(),
           '/registergview': (context)=> RegisterView(),
           '/homeview': (context)=> HomeView(),
-          '/splashview' : (context) => SplashView()
+          '/splashview' : (context) => SplashView(),
+          '/perfilview' : (context) => PerfilView()
         },
-      initialRoute: '/splashview',
+      initialRoute: '/perfilview',
       debugShowCheckedModeBanner: false,
     );
 

@@ -44,7 +44,6 @@ late BuildContext  _context;
         Image.asset("resources/gatete.jpg", width: 400,height: 600),
         CircularProgressIndicator()
       ],
-
     );
 
     return column;
