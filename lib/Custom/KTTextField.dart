@@ -32,6 +32,7 @@ class KTTextField extends StatelessWidget{
                 fillColor: Colors.deepOrange[50],
                 filled: true,
                 labelText: sHint,
+                suffixIcon: Icon(Icons.check_circle),
                 labelStyle: TextStyle(
                   color: Colors.deepOrange[200]
                 ),
