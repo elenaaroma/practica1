@@ -25,6 +25,7 @@ class KTTextField extends StatelessWidget{
         Image.asset("resources/gatete.jpg" , width: 50, height: 50),
         Flexible(
             child:  TextFormField(
+              controller: tecController,
               obscureText: blIsPassword,
               decoration: InputDecoration(
               border: OutlineInputBorder(),
