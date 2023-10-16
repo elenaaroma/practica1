@@ -86,7 +86,7 @@ class LoginView extends StatelessWidget{
                   ),
                 ),
 
-                KTTextField(sHint: 'Holi'),
+                KTTextField(tecController: usernameController,sHint: 'Holi' ),
 
                 Row(mainAxisAlignment: MainAxisAlignment.center,
 
