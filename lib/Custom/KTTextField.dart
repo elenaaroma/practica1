@@ -29,7 +29,17 @@ class KTTextField extends StatelessWidget{
               obscureText: blIsPassword,
               decoration: InputDecoration(
               border: OutlineInputBorder(),
-                hintText: sHint,
+                fillColor: Colors.deepOrange[50],
+                filled: true,
+                labelText: sHint,
+                labelStyle: TextStyle(
+                  color: Colors.deepOrange[200]
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color:  Colors.red
+                  )
+                ),
           ),
          )
         )
