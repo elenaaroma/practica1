@@ -8,6 +8,9 @@ class PerfilView extends StatelessWidget{
 
   void onClickAceptar(){
 
+    tecNombre.text;
+    tecEdad.text;
+
   }
 
   void onClickCancelar(){
