@@ -6,6 +6,15 @@ class PerfilView extends StatelessWidget{
   TextEditingController tecNombre = TextEditingController();
   TextEditingController tecEdad = TextEditingController();
 
+  void onClickAceptar(){
+
+  }
+
+  void onClickCancelar(){
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -21,15 +30,20 @@ class PerfilView extends StatelessWidget{
       
       body: Column(
         children: [
-          Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical:16),
-            child:
-               KTTextField(tecController: tecNombre, sHint: "Nombre"),
-              ),
-          KTTextField(tecController: tecEdad, sHint: "Edad")
+
+          KTTextField(tecController: tecNombre, sHint: "Nombre"),
+          KTTextField(tecController: tecEdad, sHint: "Edad"),
+          Row(
+
+            mainAxisAlignment: MainAxisAlignment.center,
+
+            children: [
+              TextButton(onPressed: onClickAceptar, child: Text("Aceptar")),
+              TextButton(onPressed: onClickCancelar, child: Text("Cancelar"))
+            ],
+          )
         ],
       ),
-      
-
       );
         
     //);

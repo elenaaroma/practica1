@@ -17,7 +17,7 @@ class KTTextField extends StatelessWidget{
 
   KTTextField({Key? key,this.sHint = "",
     required this.tecController,
-    this.blIsPassword = false
+    this.blIsPassword = false,
     this.dPaddingH = 60,
     this.dPaddingV = 16,
   }) : super(key: key);
