@@ -1,4 +1,5 @@
 import 'package:app/Custom/KTTextField.dart';
+import 'package:app/FirestoreObjects/FbUsuario.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +15,10 @@ class PerfilView extends StatelessWidget{
 
   void onClickAceptar() async{
 
-    final usuario = <String, dynamic>{
-      "nombre": tecNombre.text,
-      "edad": int.parse(tecEdad.text),
-    };
+    FbUsuario usuario = new FbUsuario(nombre: tecNombre.text, edad: int.parse(tecEdad.text));
 
-// Add a new document with a generated ID
     String uidUsuario = FirebaseAuth.instance.currentUser!.uid;
-    await db.collection("Usuarios").doc(uidUsuario).set(usuario);
+    await db.collection("Usuarios").doc(uidUsuario).set(usuario.toFirestore());
 
     Navigator.of(_context).popAndPushNamed("/homeview");
   }

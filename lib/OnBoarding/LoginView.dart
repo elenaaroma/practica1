@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Custom/KTTextField.dart';
+import '../FirestoreObjects/FbUsuario.dart';
 
 class LoginView extends StatelessWidget{
 
@@ -34,12 +35,25 @@ class LoginView extends StatelessWidget{
 
       String uid = FirebaseAuth.instance.currentUser!.uid;
 
-      DocumentSnapshot<Map<String,dynamic>> datos = await db.collection("Usuarios").doc(uid).get();
+      DocumentReference<FbUsuario> ref = db.collection("Usuarios").
+      doc(uid).
+      withConverter(fromFirestore: FbUsuario.fromFirestore,
+        toFirestore: (FbUsuario usuario, _) => usuario.toFirestore(),);
 
-      if(datos.exists){
+      FbUsuario usuario;
 
-        print("El nombre del usuario logueado es: " + datos.data()?["nombre"]);
-        print("La edad del usuario logueado es: " + datos.data()!["edad"].toString());
+      DocumentSnapshot<FbUsuario> docSnap = await ref.get();
+
+      usuario = docSnap.data()!;
+
+
+
+     //DocumentSnapshot<Map<String,dynamic>> datos = await db.collection("Usuarios").doc(uid).get();
+
+      if(usuario != null){
+
+        print("El nombre del usuario logueado es: " + usuario.nombre);
+        print("La edad del usuario logueado es: " + usuario.edad.toString());
 
         Navigator.of(_context).popAndPushNamed("/homeview");
 
@@ -89,13 +103,6 @@ class LoginView extends StatelessWidget{
 
                   KTTextField(tecController: usernameController,sHint: 'Escribe tu usuario' ),
 
-                 /* TextField(
-                    controller: usernameController,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Escribe tu usuario'
-                    ),
-                  ),*/
                 ),
 
                 Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
@@ -103,14 +110,6 @@ class LoginView extends StatelessWidget{
 
                   KTTextField(tecController: passwordController,sHint: 'Escribe tu password', blIsPassword: true ),
 
-                  /*TextFormField(
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Escribe tu contrsaeña'
-                    ),
-                    obscureText: true,
-                  ),*/
                 ),
 
                 Row(mainAxisAlignment: MainAxisAlignment.center,

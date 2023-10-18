@@ -29,15 +29,12 @@ FirebaseFirestore db = FirebaseFirestore.instance;
 
       String uid = FirebaseAuth.instance.currentUser!.uid;
 
-     //DocumentSnapshot<Map<String,dynamic>> datos = await db.collection("Usuarios").doc(uid).get();
       DocumentReference<FbUsuario> ref = db.collection("Usuarios").
       doc(uid).
       withConverter(fromFirestore: FbUsuario.fromFirestore,
         toFirestore: (FbUsuario usuario, _) => usuario.toFirestore(),);
 
       FbUsuario usuario;
-
-      //ref.get().then((value) => usuario = value.data()!);
 
       DocumentSnapshot<FbUsuario> docSnap = await ref.get();
 
