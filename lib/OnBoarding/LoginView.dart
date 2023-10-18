@@ -40,15 +40,12 @@ class LoginView extends StatelessWidget{
       withConverter(fromFirestore: FbUsuario.fromFirestore,
         toFirestore: (FbUsuario usuario, _) => usuario.toFirestore(),);
 
-      FbUsuario usuario;
+//      FbUsuario? usuario;
+
 
       DocumentSnapshot<FbUsuario> docSnap = await ref.get();
 
-      usuario = docSnap.data()!;
-
-
-
-     //DocumentSnapshot<Map<String,dynamic>> datos = await db.collection("Usuarios").doc(uid).get();
+      FbUsuario? usuario = docSnap.data();
 
       if(usuario != null){
 

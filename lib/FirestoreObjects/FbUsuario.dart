@@ -6,7 +6,6 @@ class FbUsuario {
   final String nombre ;
   final int edad ;
 
-
   FbUsuario({
     required this.nombre,
     required this.edad,
@@ -21,7 +20,6 @@ class FbUsuario {
     return FbUsuario(
         nombre: data?['nombre'],
         edad:  data?['edad'],
-
     );
   }
 

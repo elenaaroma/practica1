@@ -20,7 +20,7 @@ class Actividad1 extends StatelessWidget {
           '/splashview' : (context) => SplashView(),
           '/perfilview' : (context) => PerfilView()
         },
-      initialRoute: '/perfilview',
+      initialRoute: '/splashview',
       debugShowCheckedModeBanner: false,
     );
 
