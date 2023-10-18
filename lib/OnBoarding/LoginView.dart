@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,8 @@ class LoginView extends StatelessWidget{
 
   TextEditingController usernameController=TextEditingController();
   TextEditingController passwordController=TextEditingController();
+
+  FirebaseFirestore db = FirebaseFirestore.instance;
 
   throwSnackBar(String error){
     SnackBar snackBar = SnackBar(
@@ -24,12 +27,29 @@ class LoginView extends StatelessWidget{
 
   void onClickAceptar() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: usernameController.text,
         password: passwordController.text,
       );
 
-      Navigator.of(_context).popAndPushNamed('/homeview');
+      String uid = FirebaseAuth.instance.currentUser!.uid;
+
+      DocumentSnapshot<Map<String,dynamic>> datos = await db.collection("Usuarios").doc(uid).get();
+
+      if(datos.exists){
+
+        print("El nombre del usuario logueado es: " + datos.data()?["nombre"]);
+        print("La edad del usuario logueado es: " + datos.data()!["edad"].toString());
+
+        Navigator.of(_context).popAndPushNamed("/homeview");
+
+      }else{
+
+        Navigator.of(_context).popAndPushNamed("/perfilview");
+
+      }
+
+     // Navigator.of(_context).popAndPushNamed('/homeview');
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email'){

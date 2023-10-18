@@ -1,5 +1,6 @@
 import 'package:app/Custom/KTTextField.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class PerfilView extends StatelessWidget{
@@ -7,9 +8,11 @@ class PerfilView extends StatelessWidget{
   TextEditingController tecNombre = TextEditingController();
   TextEditingController tecEdad = TextEditingController();
 
+  late BuildContext _context;
+
   FirebaseFirestore db = FirebaseFirestore.instance;
 
-  void onClickAceptar(){
+  void onClickAceptar() async{
 
     final usuario = <String, dynamic>{
       "nombre": tecNombre.text,
@@ -17,7 +20,10 @@ class PerfilView extends StatelessWidget{
     };
 
 // Add a new document with a generated ID
-    db.collection("Usuarios").add(usuario);
+    String uidUsuario = FirebaseAuth.instance.currentUser!.uid;
+    await db.collection("Usuarios").doc(uidUsuario).set(usuario);
+
+    Navigator.of(_context).popAndPushNamed("/homeview");
   }
 
   void onClickCancelar(){
@@ -28,6 +34,8 @@ class PerfilView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
+    this._context = context;
 
     return Scaffold(
 

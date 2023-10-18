@@ -31,7 +31,7 @@ class RegisterView extends StatelessWidget{
             password: passwordController.text,
           );
 
-          Navigator.of(_context).pushNamed("/loginview");
+          Navigator.of(_context).pushNamed("/perfilview");
 
         } on FirebaseAuthException catch (e) {
           if (e.code == 'weak-password') {

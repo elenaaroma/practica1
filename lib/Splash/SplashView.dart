@@ -1,4 +1,6 @@
 
+import 'package:app/FirestoreObjects/FbUsuario.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +14,7 @@ class SplashView extends StatefulWidget {
 
 class _SplsahViewState extends State<SplashView>{
 
-late BuildContext  _context;
+FirebaseFirestore db = FirebaseFirestore.instance;
 
 @override
   void initState() {
@@ -24,10 +26,35 @@ late BuildContext  _context;
   void checkSesion() async{
   await Future.delayed(Duration(seconds: 3));
     if(FirebaseAuth.instance.currentUser != null) {
-      Navigator.of(_context).popAndPushNamed("/homeview");
+
+      String uid = FirebaseAuth.instance.currentUser!.uid;
+
+     //DocumentSnapshot<Map<String,dynamic>> datos = await db.collection("Usuarios").doc(uid).get();
+      DocumentReference<FbUsuario> ref = db.collection("Usuarios").
+      doc(uid).
+      withConverter(fromFirestore: FbUsuario.fromFirestore,
+        toFirestore: (FbUsuario usuario, _) => usuario.toFirestore(),);
+
+      FbUsuario usuario;
+
+      //ref.get().then((value) => usuario = value.data()!);
+
+      DocumentSnapshot<FbUsuario> docSnap = await ref.get();
+
+      usuario = docSnap.data()!;
+
+     if(usuario != null){
+       
+       print("El nombre del usuario logueado es: " + usuario.nombre);
+       print("La edad del usuario logueado es: " + usuario.edad.toString());
+       
+       Navigator.of(context).popAndPushNamed("/homeview");
+     }else{
+       Navigator.of(context).popAndPushNamed("/perfilview");
+     }
     }
     else {
-      Navigator.of(_context).popAndPushNamed("/loginview");
+      Navigator.of(context).popAndPushNamed("/loginview");
     }
   }
 
@@ -35,9 +62,7 @@ late BuildContext  _context;
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    _context = context;
     checkSesion();
-
 
     Column column = Column(
       children: [
