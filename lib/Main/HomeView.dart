@@ -13,6 +13,52 @@ class HomeView extends StatefulWidget{
   State<HomeView> createState() => _HomeViewState();
 }
 
+class _HomeViewState extends State<HomeView> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  final List<String> posts = <String>['A', 'B', 'C'];
+  final List<int> colorCopdes = <int>[600 , 500, 100];
+
+  Widget? creadorDeItemLista (BuildContext context , int index){
+    return Text("Post " + posts[index] ,
+      style: TextStyle(color: Colors.amber[colorCopdes[index]]));
+  }
+
+  Widget creadorDeSeparadorLista (BuildContext context , int index){
+    return Divider();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      appBar: AppBar(title: Text("HOME"),
+        centerTitle: true,
+        shadowColor: Colors.red[300],
+        backgroundColor: Colors.deepOrange[100],),
+      body: ListView.separated(
+        padding: EdgeInsets.all(80),
+        itemCount: posts.length,
+        itemBuilder: creadorDeItemLista,
+        separatorBuilder: creadorDeSeparadorLista,
+      ),
+    );
+  }
+}
+
+/*
+
+class HomeView extends StatefulWidget{
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
 class _HomeViewState extends State<HomeView>{
 
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -94,4 +140,4 @@ class _HomeViewState extends State<HomeView>{
     );
   }
 
-}
+}*/

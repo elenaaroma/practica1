@@ -13,7 +13,6 @@ class PostCellView extends StatelessWidget{
     required this.iColorCode,
     required this.dFontSize});
 
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
