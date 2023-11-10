@@ -1,6 +1,7 @@
 
 import 'dart:html';
 
+import 'package:app/Custom/BottomMenu.dart';
 import 'package:app/Custom/PostCellView.dart';
 import 'package:app/Custom/PostGridCellView.dart';
 import 'package:app/FirestoreObjects/FbPost.dart';
@@ -66,22 +67,18 @@ class _HomeViewState extends State<HomeView> {
   Widget? celdasOLista (bool isList){
 
     if(bIsList){
-
       return ListView.separated(
         padding: EdgeInsets.all(8),
         itemCount: posts.length,
         itemBuilder: creadorDeItemLista,
         separatorBuilder: creadorDeSeparadorLista,
       );
-
     }else{
-
       return  GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
           itemCount: posts.length,
           itemBuilder: creadorDeItemMatriz
       );
-
     }
 
   }
@@ -97,6 +94,7 @@ class _HomeViewState extends State<HomeView> {
       body: Center(
         child: celdasOLista(bIsList)
       ) ,
+      bottomNavigationBar: BottomMenu(),
     );
   }
 }
