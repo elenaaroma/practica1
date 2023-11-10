@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../Interfaces/BottomMenuEvents.dart';
-
 class BottomMenu extends StatelessWidget{
 
-  BottomMenuEvents events;
+  Function(int indice, String text) ? onBotonesClicked;
 
- BottomMenu({Key? key, required this.events}
+ BottomMenu({Key? key, required this.onBotonesClicked}
      ) : super (key: key);
 
   @override
@@ -16,8 +14,8 @@ class BottomMenu extends StatelessWidget{
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-      TextButton(onPressed: () => events.onBottomMenuPressed(0), child: Icon(Icons.list, color: Colors.red[300],),),
-      TextButton(onPressed: () => events.onBottomMenuPressed(1), child: Icon(Icons.grid_view, color: Colors.red[300],),),
+      TextButton(onPressed: () => onBotonesClicked!(0, "Lista"), child: Icon(Icons.list, color: Colors.red[300],),),
+      TextButton(onPressed: () => onBotonesClicked!(1, "Celdas"), child: Icon(Icons.grid_view, color: Colors.red[300],),),
      ]
     );
   }
