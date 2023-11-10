@@ -8,17 +8,32 @@ import 'package:app/FirestoreObjects/FbPost.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatefulWidget{
+import '../Interfaces/BottomMenuEvents.dart';
+
+class HomeView extends StatefulWidget {
 
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView> implements BottomMenuEvents{
 
   FirebaseFirestore db = FirebaseFirestore.instance;
   final List<FbPost> posts = [];
   bool bIsList = false;
+
+  @override
+  void onBottomMenuPressed(int indice) {
+    // TODO: implement onBottomMenuPressed
+    print(indice.toString());
+    setState(() {
+      if (indice == 1){
+        bIsList = false;
+      }else{
+        bIsList = true;
+      }
+    });
+  }
 
   @override
   void initState() {
@@ -94,9 +109,11 @@ class _HomeViewState extends State<HomeView> {
       body: Center(
         child: celdasOLista(bIsList)
       ) ,
-      bottomNavigationBar: BottomMenu(),
+      bottomNavigationBar: BottomMenu(events: this,),
     );
   }
+
+
 }
 
 /*

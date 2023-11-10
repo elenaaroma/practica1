@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../Custom/KTTextField.dart';
 import '../FirestoreObjects/FbUsuario.dart';
 
-class LoginView extends StatelessWidget{
+class LoginView extends StatelessWidget {
 
   late BuildContext _context;
 
