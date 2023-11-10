@@ -5,7 +5,7 @@ import '../Interfaces/BottomMenuEvents.dart';
 
 class BottomMenu extends StatelessWidget{
 
-  late BottomMenuEvents events;
+  BottomMenuEvents events;
 
  BottomMenu({Key? key, required this.events}
      ) : super (key: key);

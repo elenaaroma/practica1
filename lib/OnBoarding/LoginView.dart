@@ -1,4 +1,6 @@
 
+import 'package:app/Custom/BottomMenu.dart';
+import 'package:app/Interfaces/BottomMenuEvents.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,7 @@ import 'package:flutter/material.dart';
 import '../Custom/KTTextField.dart';
 import '../FirestoreObjects/FbUsuario.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatelessWidget implements BottomMenuEvents{
 
   late BuildContext _context;
 
@@ -120,8 +122,15 @@ class LoginView extends StatelessWidget {
               ],
             ),
           ),
+      bottomNavigationBar: BottomMenu(events: this,),
     );
 
+  }
+
+  @override
+  void onBottomMenuPressed(int indice) {
+    // TODO: implement onBottomMenuPressed
+    print("------------------------> LOGIN" + indice.toString() );
   }
 
 }
