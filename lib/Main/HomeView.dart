@@ -15,22 +15,75 @@ class HomeView extends StatefulWidget{
 
 class _HomeViewState extends State<HomeView> {
 
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  final List<FbPost> posts = [];
+  bool bIsList = false;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    descargarPosts();
   }
 
-  final List<String> posts = <String>['A', 'B', 'C'];
-  final List<int> colorCopdes = <int>[600 , 500, 100];
+  void descargarPosts() async{
+    CollectionReference<FbPost> ref = db.collection("Post").
+    withConverter(fromFirestore: FbPost.fromFirestore,
+      toFirestore: (FbPost post, _) => post.toFirestore(),);
+
+    QuerySnapshot<FbPost> querySnapshot = await ref.get();
+
+    for(int i = 0 ; i < querySnapshot.docs.length; i++){
+      setState(() {
+        posts.add(querySnapshot.docs[i].data());
+      });
+    }
+  }
 
   Widget? creadorDeItemLista (BuildContext context , int index){
-    return Text("Post " + posts[index] ,
-      style: TextStyle(color: Colors.amber[colorCopdes[index]]));
+    return PostCellView(sText: posts[index].titulo,
+        dFontSize: 20,
+        iColorCode: 0,
+    );
+  }
+
+  Widget? creadorDeItemMatriz (BuildContext context , int index){
+    return PostGridCellView(sText: posts[index].titulo,
+        dFontSize: 20,
+        iColorCode: 0,
+        dHeigth : 200);
   }
 
   Widget creadorDeSeparadorLista (BuildContext context , int index){
-    return Divider();
+    return Column(
+      children: [
+        Divider(),
+      ],
+    );
+  }
+
+
+  Widget? celdasOLista (bool isList){
+
+    if(bIsList){
+
+      return ListView.separated(
+        padding: EdgeInsets.all(8),
+        itemCount: posts.length,
+        itemBuilder: creadorDeItemLista,
+        separatorBuilder: creadorDeSeparadorLista,
+      );
+
+    }else{
+
+      return  GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
+          itemCount: posts.length,
+          itemBuilder: creadorDeItemMatriz
+      );
+
+    }
+
   }
 
   @override
@@ -41,12 +94,9 @@ class _HomeViewState extends State<HomeView> {
         centerTitle: true,
         shadowColor: Colors.red[300],
         backgroundColor: Colors.deepOrange[100],),
-      body: ListView.separated(
-        padding: EdgeInsets.all(80),
-        itemCount: posts.length,
-        itemBuilder: creadorDeItemLista,
-        separatorBuilder: creadorDeSeparadorLista,
-      ),
+      body: Center(
+        child: celdasOLista(bIsList)
+      ) ,
     );
   }
 }

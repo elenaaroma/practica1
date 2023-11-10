@@ -6,7 +6,6 @@ class FbPost {
   final String titulo ;
   final String cuerpo ;
 
-
   FbPost({
     required this.titulo,
     required this.cuerpo,

@@ -6,11 +6,13 @@ class PostGridCellView extends StatelessWidget{
   final String sText;
   final int iColorCode;
   final double dFontSize;
+  final double dHeigth;
 
   const PostGridCellView({super.key,
     required this.sText,
     required this.iColorCode,
-    required this.dFontSize});
+    required this.dFontSize,
+    required this.dHeigth});
 
 
   @override
