@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:app/Custom/BottomMenu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -127,9 +129,10 @@ class LoginView extends StatelessWidget{
   }
 
   @override
-  void onBottomMenuPressed(int indice, String text) {
+  void onBottomMenuPressed(int indice) {
     // TODO: implement onBottomMenuPressed
-    print("------------------------> LOGIN" + indice.toString() + "--------->" + text);
+    if (indice == 2)exit(0);
+    print("------------------------> LOGIN" + indice.toString() + "--------->" );
   }
 
 }

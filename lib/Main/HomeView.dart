@@ -1,5 +1,6 @@
 
 import 'dart:html';
+import 'dart:io';
 
 import 'package:app/Custom/BottomMenu.dart';
 import 'package:app/Custom/PostCellView.dart';
@@ -21,14 +22,17 @@ class _HomeViewState extends State<HomeView>{
   bool bIsList = false;
 
 
-  void onBottomMenuPressed(int indice, String text) {
+  void onBottomMenuPressed(int indice) {
     // TODO: implement onBottomMenuPressed
-    print("---------> HOME" + indice.toString() + "------> " + text);
+    print("---------> HOME" + indice.toString() + "------> " );
     setState(() {
       if (indice == 1){
         bIsList = false;
-      }else{
+      }else if(indice == 0){
         bIsList = true;
+      }
+      else if(indice == 2){
+        exit(0);
       }
     });
   }
@@ -106,6 +110,7 @@ class _HomeViewState extends State<HomeView>{
         child: celdasOLista(bIsList)
       ) ,
       bottomNavigationBar: BottomMenu(onBotonesClicked: onBottomMenuPressed),
+
     );
   }
 }
