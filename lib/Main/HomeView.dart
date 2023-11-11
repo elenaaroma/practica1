@@ -110,7 +110,7 @@ class _HomeViewState extends State<HomeView>{
         child: celdasOLista(bIsList)
       ) ,
       bottomNavigationBar: BottomMenu(onBotonesClicked: onBottomMenuPressed),
-
+      drawer: Image.asset("resources/gatete.jpg"),
     );
   }
 }
