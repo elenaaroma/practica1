@@ -79,6 +79,8 @@ class _HomeViewState extends State<HomeView>{
     return PostCellView(sText: posts[index].titulo,
         dFontSize: 20,
         iColorCode: 0,
+        iPosicion: index,
+        onItemListClickedFun: onItemListClicked
     );
   }
 
@@ -102,7 +104,7 @@ class _HomeViewState extends State<HomeView>{
 
     if(bIsList){
       return ListView.separated(
-        padding: EdgeInsets.all(8),
+        padding: EdgeInsets.all(50),
         itemCount: posts.length,
         itemBuilder: creadorDeItemLista,
         separatorBuilder: creadorDeSeparadorLista,
@@ -130,4 +132,9 @@ class _HomeViewState extends State<HomeView>{
       drawer: DrawerClass(onItemTap: fHomeViewDrawerOnTap,),
     );
   }
+
+  void onItemListClicked(int index){
+
+  }
+
 }
