@@ -18,7 +18,7 @@ class DrawerClass extends StatelessWidget{
           const DrawerHeader(
             decoration: BoxDecoration(
 
-              color: Colors.black,
+              color: Colors.pinkAccent,
             ),
             child: Text(
                 style: TextStyle(color: Colors.white),
@@ -26,8 +26,8 @@ class DrawerClass extends StatelessWidget{
             ),
           ),
           ListTile(
-            leading: Image.asset('resources/logo_kyty.png'),
-            selectedColor: Colors.blue,
+            leading: Image.asset('resources/gatete.jpg'),
+            selectedColor: Colors.deepOrangeAccent,
             selected: true,
             title: const Text('Apartado 1'),
             onTap: () {

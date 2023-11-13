@@ -3,7 +3,9 @@ import 'dart:html';
 import 'dart:io';
 
 import 'package:app/Custom/BottomMenu.dart';
+import 'package:app/Custom/DrawerClass.dart';
 import 'package:app/Custom/PostCellView.dart';
+import 'package:app/Custom/DrawerClass.dart';
 import 'package:app/Custom/PostGridCellView.dart';
 import 'package:app/FirestoreObjects/FbPost.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,6 +37,10 @@ class _HomeViewState extends State<HomeView>{
         exit(0);
       }
     });
+  }
+
+  void fHomeViewDrawerOnTap(int indice){
+    print("->>>>>>>>>>>>" + indice.toString());
   }
 
   @override
@@ -110,7 +116,7 @@ class _HomeViewState extends State<HomeView>{
         child: celdasOLista(bIsList)
       ) ,
       bottomNavigationBar: BottomMenu(onBotonesClicked: onBottomMenuPressed),
-      drawer: Image.asset("resources/gatete.jpg"),
+      drawer: DrawerClass(onItemTap: fHomeViewDrawerOnTap,),
     );
   }
 }
