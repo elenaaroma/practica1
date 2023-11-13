@@ -8,7 +8,9 @@ import 'package:app/Custom/PostCellView.dart';
 import 'package:app/Custom/DrawerClass.dart';
 import 'package:app/Custom/PostGridCellView.dart';
 import 'package:app/FirestoreObjects/FbPost.dart';
+import 'package:app/OnBoarding/LoginView.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -41,6 +43,15 @@ class _HomeViewState extends State<HomeView>{
 
   void fHomeViewDrawerOnTap(int indice){
     print("->>>>>>>>>>>>" + indice.toString());
+    if (indice == 0){
+      FirebaseAuth.instance.signOut();
+      Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (BuildContext context) => LoginView()),
+              ModalRoute.withName('/logingview'));
+      
+    }else if (indice == 1){
+      exit(0);
+    }
   }
 
   @override
