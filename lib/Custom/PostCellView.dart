@@ -8,7 +8,7 @@ class PostCellView extends StatelessWidget{
   final int iColorCode;
   final double dFontSize;
   final int iPosicion;
-  final Function (int indice) ? onItemListClickedFun;
+  final Function (int indice) onItemListClickedFun;
 
   const PostCellView({super.key,
     required this.sText,
@@ -33,7 +33,7 @@ class PostCellView extends StatelessWidget{
        ),
      ),
      onTap: (){
-       print("tapped on container " + iPosicion.toString()) ;
+       onItemListClickedFun(iPosicion);
      },
    )
    ;
