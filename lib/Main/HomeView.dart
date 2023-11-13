@@ -135,7 +135,7 @@ class _HomeViewState extends State<HomeView>{
 
   void onItemListClicked(int index){
 
-
+    Navigator.of(context).pushNamed("postview");
 
   }
 
