@@ -5,11 +5,12 @@ class FbPost {
 
   final String titulo ;
   final String cuerpo ;
+  final String sUrlImg;
 
   FbPost({
     required this.titulo,
     required this.cuerpo,
-
+    required this.sUrlImg,
   });
 
   factory FbPost.fromFirestore(
@@ -20,6 +21,7 @@ class FbPost {
     return FbPost(
       titulo: data?['titulo'],
       cuerpo:  data?['cuerpo'],
+      sUrlImg:  data?['sUrlImg'],
     );
   }
 
@@ -27,7 +29,7 @@ class FbPost {
     return {
       if (titulo != null) "titulo" : titulo,
       if (cuerpo != null) "cuerpo" : cuerpo,
-
+      if (sUrlImg != null) "sUrlImg" : sUrlImg,
     };
   }
 

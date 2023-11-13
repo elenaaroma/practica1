@@ -9,6 +9,7 @@ import 'package:app/Custom/DrawerClass.dart';
 import 'package:app/Custom/PostGridCellView.dart';
 import 'package:app/FirestoreObjects/FbPost.dart';
 import 'package:app/OnBoarding/LoginView.dart';
+import 'package:app/Singletone/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +89,10 @@ class _HomeViewState extends State<HomeView>{
     return PostGridCellView(sText: posts[index].titulo,
         dFontSize: 20,
         iColorCode: 0,
-        dHeigth : 200);
+        dHeigth : 200,
+        iPosicion: index,
+        onItemListClickedFun: onItemListClicked
+    );
   }
 
   Widget creadorDeSeparadorLista (BuildContext context , int index){
@@ -134,6 +138,8 @@ class _HomeViewState extends State<HomeView>{
   }
 
   void onItemListClicked(int index){
+
+    DataHolder().selectedPost = posts[index];
 
     Navigator.of(context).pushNamed("/postview");
 
