@@ -47,7 +47,7 @@ class _HomeViewState extends State<HomeView>{
       FirebaseAuth.instance.signOut();
       Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (BuildContext context) => LoginView()),
-              ModalRoute.withName('/logingview'));
+          ModalRoute.withName('/logingview'));
       
     }else if (indice == 1){
       exit(0);
@@ -135,7 +135,7 @@ class _HomeViewState extends State<HomeView>{
 
   void onItemListClicked(int index){
 
-    Navigator.of(context).pushNamed("postview");
+    Navigator.of(context).pushNamed("/postview");
 
   }
 
