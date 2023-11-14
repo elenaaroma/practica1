@@ -4,6 +4,7 @@ import 'package:app/OnBoarding/LoginView.dart';
 import 'package:app/OnBoarding/PerfilView.dart';
 import 'package:app/OnBoarding/PhoneLoginView.dart';
 import 'package:app/OnBoarding/RegisterView.dart';
+import 'package:app/Singletone/DataHolder.dart';
 import 'package:app/Splash/SplashView.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -20,6 +21,7 @@ class Actividad1 extends StatelessWidget {
     if(kIsWeb){
       materialApp = MaterialApp(
         title: "Actividad 1",
+        theme: ThemeData(fontFamily: DataHolder().plAdmin.getFuente()),
         routes: {
           '/loginview': (context)=> LoginView(),
           '/registergview': (context)=> RegisterView(),
@@ -48,10 +50,6 @@ class Actividad1 extends StatelessWidget {
         debugShowCheckedModeBanner: false,
       );
     }
-
-
-
-
 
     return materialApp;
 

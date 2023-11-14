@@ -2,6 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../Singletone/DataHolder.dart';
+
 class PostCellView extends StatelessWidget{
 
   final String sText;
@@ -27,7 +29,7 @@ class PostCellView extends StatelessWidget{
        color: Colors.amber[iColorCode],
        child: Row(
            children:[
-             Image.asset("resources/gatete.jpg", width: 30,height: 30),
+             Image.asset(DataHolder().plAdmin.getImage("gatete.jpg"), width: 30,height: 30),
              Text(sText)
            ]
        ),

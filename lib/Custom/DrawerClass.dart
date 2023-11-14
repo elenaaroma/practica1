@@ -2,6 +2,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../Singletone/DataHolder.dart';
+
 class DrawerClass extends StatelessWidget{
 
   Function(int indice)? onItemTap;
@@ -26,7 +28,7 @@ class DrawerClass extends StatelessWidget{
             ),
           ),
           ListTile(
-            leading: Image.asset('resources/gatete.jpg'),
+            leading: Image.asset(DataHolder().plAdmin.getImage("gatete.jpg")),
             selectedColor: Colors.deepOrangeAccent,
             selected: true,
             title: const Text('Apartado 1'),

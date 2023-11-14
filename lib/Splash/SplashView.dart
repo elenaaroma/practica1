@@ -1,5 +1,6 @@
 
 import 'package:app/FirestoreObjects/FbUsuario.dart';
+import 'package:app/Singletone/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,7 @@ FirebaseFirestore db = FirebaseFirestore.instance;
 
     Column column = Column(
       children: [
-        Image.asset("resources/gatete.jpg", width: 400,height: 600),
+        Image.asset(DataHolder().plAdmin.getImage("gatete.jpg"), width: 400,height: 600),
         CircularProgressIndicator()
       ],
     );

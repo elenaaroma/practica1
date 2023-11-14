@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../Singletone/DataHolder.dart';
+
 class KTTextField extends StatelessWidget{
 
   String sHint ;
@@ -31,7 +33,7 @@ class KTTextField extends StatelessWidget{
       Padding(padding:  EdgeInsets.symmetric(horizontal: dPaddingH, vertical:dPaddingV),
         child:
       Row(children: [
-        Image.asset("resources/gatete.jpg" , width: 50, height: 50),
+        Image.asset(DataHolder().plAdmin.getImage("gatete.jpg"), width: 50, height: 50),
         Flexible(
             child:  TextFormField(
               controller: tecController,
