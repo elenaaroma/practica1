@@ -2,6 +2,7 @@ import 'package:app/Main/HomeView.dart';
 import 'package:app/Main/PostView.dart';
 import 'package:app/OnBoarding/LoginView.dart';
 import 'package:app/OnBoarding/PerfilView.dart';
+import 'package:app/OnBoarding/PhoneLoginView.dart';
 import 'package:app/OnBoarding/RegisterView.dart';
 import 'package:app/Splash/SplashView.dart';
 import 'package:flutter/cupertino.dart';
@@ -35,7 +36,7 @@ class Actividad1 extends StatelessWidget {
       materialApp = MaterialApp(
         title: "Actividad 1",
         routes: {
-          '/loginview': (context)=> LoginView(),
+          '/loginview': (context)=> PhoneLoginView(),
           '/registergview': (context)=> RegisterView(),
           '/homeview': (context)=> HomeView(),
           '/splashview' : (context) => SplashView(),
@@ -43,7 +44,7 @@ class Actividad1 extends StatelessWidget {
           '/postview' : (context) => PostView(),
           '/postcreateview' : (context) => PostCreateView(),
         },
-        initialRoute: '/homeview',
+        initialRoute: '/loginview',
         debugShowCheckedModeBanner: false,
       );
     }
