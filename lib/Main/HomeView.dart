@@ -134,6 +134,13 @@ class _HomeViewState extends State<HomeView>{
       ) ,
       bottomNavigationBar: BottomMenu(onBotonesClicked: onBottomMenuPressed),
       drawer: DrawerClass(onItemTap: fHomeViewDrawerOnTap,),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+
+        },
+        child: Icon(Icons.add , ),
+          backgroundColor: Colors.deepOrange[100],
+      ),
     );
   }
 

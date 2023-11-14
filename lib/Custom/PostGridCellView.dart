@@ -30,9 +30,13 @@ class PostGridCellView extends StatelessWidget{
           color: Colors.amber[iColorCode],
           child: Row(
             children: [
-              Image.asset("resources/gatete.jpg",width: 70,
-                  height: 70),
-              Text(sText,style: TextStyle(fontSize: dFontSize)),
+             Image.asset("resources/gatete.jpg",width: 70,height: 70),
+              //Text(sText,style: TextStyle(fontSize: dFontSize)),
+              Expanded(child: Text(sText, style: TextStyle (fontSize: dFontSize),
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 20,
+              )),
               TextButton(onPressed: null, child: Text("+",style: TextStyle(fontSize: dFontSize)))
             ],
           )
