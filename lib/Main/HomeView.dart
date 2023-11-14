@@ -136,7 +136,7 @@ class _HomeViewState extends State<HomeView>{
       drawer: DrawerClass(onItemTap: fHomeViewDrawerOnTap,),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
+          Navigator.of(context).pushNamed("/postcreateview");
         },
         child: Icon(Icons.add , ),
           backgroundColor: Colors.deepOrange[100],

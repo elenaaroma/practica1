@@ -7,6 +7,8 @@ import 'package:app/Splash/SplashView.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Main/PostCreateView.dart';
+
 class Actividad1 extends StatelessWidget {
 
   @override
@@ -21,8 +23,9 @@ class Actividad1 extends StatelessWidget {
           '/splashview' : (context) => SplashView(),
           '/perfilview' : (context) => PerfilView(),
           '/postview' : (context) => PostView(),
+          '/postcreateview' : (context) => PostCreateView(),
         },
-      initialRoute: '/splashview',
+      initialRoute: '/homeview',
       debugShowCheckedModeBanner: false,
     );
 

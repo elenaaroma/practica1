@@ -100,16 +100,15 @@ class LoginView extends StatelessWidget{
               children: [
                 Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
                   child:
-
-                  KTTextField(tecController: usernameController,sHint: 'Escribe tu usuario' ),
-
+                  KTTextField(tecController: usernameController,
+                      sHint: 'Escribe tu usuario' ),
                 ),
 
                 Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
                   child:
-
-                  KTTextField(tecController: passwordController,sHint: 'Escribe tu password', blIsPassword: true ),
-
+                  KTTextField(tecController: passwordController,
+                      sHint: 'Escribe tu password',
+                      blIsPassword: true ),
                 ),
 
                 Row(mainAxisAlignment: MainAxisAlignment.center,
