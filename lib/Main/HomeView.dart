@@ -148,6 +148,8 @@ class _HomeViewState extends State<HomeView>{
 
     DataHolder().selectedPost = posts[index];
 
+    DataHolder().saveSelectedPostInCache();
+
     Navigator.of(context).pushNamed("/postview");
 
   }

@@ -42,11 +42,7 @@ class PostCreateView extends StatelessWidget {
                 cuerpo: tecCuerpo.text,
                 sUrlImg: "");
 
-            CollectionReference<FbPost> postsRef = db.collection("Post").withConverter(
-                fromFirestore: FbPost.fromFirestore,
-                toFirestore: (FbPost post, _) => post.toFirestore());
-
-            postsRef.add(postNuevo);
+              DataHolder().insertPostEnFB(postNuevo);
 
            }, child: Text("Postear"))
 
