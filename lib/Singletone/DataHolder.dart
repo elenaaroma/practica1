@@ -1,4 +1,5 @@
 
+import 'package:app/Singletone/FirebaseAdmin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,7 +9,7 @@ class DataHolder{
 
   static final DataHolder _dataHolder = new DataHolder._internal();
   FirebaseFirestore db = FirebaseFirestore.instance;
-
+  FirebaseAdmin fbadmin = FirebaseAdmin();
 
   String sNombre ="Kyty";
   late String sPostTitle;

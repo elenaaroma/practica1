@@ -74,6 +74,7 @@ class _HomeViewState extends State<HomeView>{
         posts.add(querySnapshot.docs[i].data());
       });
     }
+    
   }
 
   Widget? creadorDeItemLista (BuildContext context , int index){
