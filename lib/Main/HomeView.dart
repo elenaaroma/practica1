@@ -13,6 +13,7 @@ import 'package:app/Singletone/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 class HomeView extends StatefulWidget {
 
@@ -60,6 +61,14 @@ class _HomeViewState extends State<HomeView>{
     // TODO: implement initState
     super.initState();
     descargarPosts();
+    loadGeoLocator();
+  }
+
+  void loadGeoLocator() async{
+    Position pos=await DataHolder().geolocAdmin.determinePosition();
+    print("------------>>>> "+pos.toString());
+    //DataHolder().geolocAdmin.registrarCambiosLoc();
+
   }
 
   void descargarPosts() async{

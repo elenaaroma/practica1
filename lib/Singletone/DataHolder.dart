@@ -1,5 +1,6 @@
 
 import 'package:app/Singletone/FirebaseAdmin.dart';
+import 'package:app/Singletone/GeolocAdmin.dart';
 import 'package:app/Singletone/PlatformAdmin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,8 @@ class DataHolder{
   FirebaseFirestore db = FirebaseFirestore.instance;
   FirebaseAdmin fbadmin = FirebaseAdmin();
   PlataformAdmin plAdmin = PlataformAdmin();
+  GeolocAdmin geolocAdmin = GeolocAdmin();
+
 
   String sNombre ="Kyty";
   late String sPostTitle;
