@@ -25,14 +25,17 @@ class PostGridCellView extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
-        child:
-
-    FractionallySizedBox(
+        child: FractionallySizedBox(
       child:Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage("https://previews.123rf.com/images/aprillrain/aprillrain2212/aprillrain221200612/196177803-imagen-de-caricatura-de-un-astronauta-sentado-en-una-luna-ilustraci%C3%B3n-de-alta-calidad.jpg");
+          )
+        ),
           color: Colors.amber[iColorCode],
           child: Row(
             children: [
-             Image.asset(DataHolder().plAdmin.getImage("gatete.jpg"),width: 70,height: 70),
+            // Image.asset(DataHolder().plAdmin.getImage("gatete.jpg"),width: 70,height: 70),
               //Text(sText,style: TextStyle(fontSize: dFontSize)),
               Expanded(child: Text(sText, style: TextStyle (fontSize: dFontSize),
                 textAlign: TextAlign.start,
