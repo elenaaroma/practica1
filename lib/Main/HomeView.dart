@@ -76,6 +76,7 @@ class _HomeViewState extends State<HomeView>{
     withConverter(fromFirestore: FbPost.fromFirestore,
       toFirestore: (FbPost post, _) => post.toFirestore(),);
 
+    /*
     QuerySnapshot<FbPost> querySnapshot = await ref.get();
 
     for(int i = 0 ; i < querySnapshot.docs.length; i++){
@@ -83,7 +84,26 @@ class _HomeViewState extends State<HomeView>{
         posts.add(querySnapshot.docs[i].data());
       });
     }
-    
+
+     */
+
+    ref.snapshots().listen(datosDescargados, onError: descargaPostError,);
+
+  }
+
+  void datosDescargados(QuerySnapshot<FbPost> postsDescargados){
+    for(int i=0;i<postsDescargados.docChanges.length;i++){
+      FbPost temp = postsDescargados.docChanges[i].doc.data()!;
+     // mapPosts[postsDescargados.docChanges[i].doc.id]=temp;
+    }
+    setState(() {
+      posts.clear();
+     // posts.addAll(mapPosts.values);
+    });
+  }
+
+  void descargaPostError(error){
+    print("Listen failed: $error");
   }
 
   Widget? creadorDeItemLista (BuildContext context , int index){
@@ -136,6 +156,9 @@ class _HomeViewState extends State<HomeView>{
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(title: Text("HOME"),
+        actions: [
+
+      ],
         centerTitle: true,
         shadowColor: Colors.red[300],
         backgroundColor: Colors.deepOrange[100],),

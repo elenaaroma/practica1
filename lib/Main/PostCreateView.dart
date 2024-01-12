@@ -49,7 +49,6 @@ class _PostCreateViewState extends State<PostCreateView> {
     final storageRef = FirebaseStorage.instance.ref();
 
     String rutaEnNube= "posts/"+FirebaseAuth.instance.currentUser!.uid+"/imgs/"+ DateTime.now().millisecondsSinceEpoch.toString()+".jpg";
-    print("RUTA DONDE VA A GUARDARSE LA IMAGEN: "+rutaEnNube);
 
     final rutaAFicheroEnNube = storageRef.child(rutaEnNube);
     // Create the file metadata
@@ -64,8 +63,6 @@ class _PostCreateViewState extends State<PostCreateView> {
     print("SE HA SUBIDO LA IMAGEN");
 
     String imgUrl=await rutaAFicheroEnNube.getDownloadURL();
-
-    print("URL DE DESCARGA: "+imgUrl);
 
     FbPost postNuevo=new FbPost(
         titulo: tecTitulo.text,
