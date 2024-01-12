@@ -60,8 +60,6 @@ class _PostCreateViewState extends State<PostCreateView> {
       print("ERROR AL SUBIR IMAGEN: "+e.toString());
     }
 
-    print("SE HA SUBIDO LA IMAGEN");
-
     String imgUrl=await rutaAFicheroEnNube.getDownloadURL();
 
     FbPost postNuevo=new FbPost(

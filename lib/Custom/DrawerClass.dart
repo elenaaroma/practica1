@@ -53,9 +53,16 @@ class DrawerClass extends StatelessWidget{
           ),
           ListTile(
             leading: Icon(Icons.map_outlined, color: Colors.red),
-            title: const Text('Mapa'),
+            title: const Text('Usuarios en 5 km'),
             onTap: () {
               onItemTap!(3);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.image, color: Colors.red),
+                title: const Text ('Gatos api'),
+            onTap: (){
+              onItemTap!(4);
             },
           )
         ],

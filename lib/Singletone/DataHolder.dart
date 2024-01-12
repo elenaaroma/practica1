@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../FirestoreObjects/FbPost.dart';
+import 'HttpAdmin.dart';
 
 class DataHolder{
 
@@ -14,6 +15,8 @@ class DataHolder{
   FirebaseAdmin fbadmin = FirebaseAdmin();
   PlataformAdmin plAdmin = PlataformAdmin();
   GeolocAdmin geolocAdmin = GeolocAdmin();
+  HttpAdmin httpAdmin = HttpAdmin();
+
 
 
   String sNombre ="Kyty";

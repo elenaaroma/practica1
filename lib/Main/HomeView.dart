@@ -25,6 +25,7 @@ class _HomeViewState extends State<HomeView>{
 
   FirebaseFirestore db = FirebaseFirestore.instance;
   final List<FbPost> posts = [];
+  final Map<String,FbPost> mapPosts = Map();
   bool bIsList = false;
 
 
@@ -169,6 +170,31 @@ class _HomeViewState extends State<HomeView>{
             );
           },
         );
+      } else if(indice == 4) {
+        String gato = await DataHolder().httpAdmin.getCatData();
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Gato'),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.network(gato, height: 300),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  child: Text('Cerrar'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
       }
     });
   }
@@ -184,7 +210,7 @@ class _HomeViewState extends State<HomeView>{
   void loadGeoLocator() async{
     Position pos=await DataHolder().geolocAdmin.determinePosition();
     print("------------>>>> "+pos.toString());
-    //DataHolder().geolocAdmin.registrarCambiosLoc();
+    DataHolder().geolocAdmin.registrarCambiosLoc();
 
   }
 
@@ -193,29 +219,21 @@ class _HomeViewState extends State<HomeView>{
     withConverter(fromFirestore: FbPost.fromFirestore,
       toFirestore: (FbPost post, _) => post.toFirestore(),);
 
-    /*
-    QuerySnapshot<FbPost> querySnapshot = await ref.get();
-
-    for(int i = 0 ; i < querySnapshot.docs.length; i++){
-      setState(() {
-        posts.add(querySnapshot.docs[i].data());
-      });
-    }
-
-     */
-
     ref.snapshots().listen(datosDescargados, onError: descargaPostError,);
 
   }
 
   void datosDescargados(QuerySnapshot<FbPost> postsDescargados){
+    print("NUMERO DE POSTS ACTUALIZADOS>>>> "+postsDescargados.docChanges.length.toString());
+
     for(int i=0;i<postsDescargados.docChanges.length;i++){
       FbPost temp = postsDescargados.docChanges[i].doc.data()!;
-     // mapPosts[postsDescargados.docChanges[i].doc.id]=temp;
+      mapPosts[postsDescargados.docChanges[i].doc.id]=temp;
+
     }
     setState(() {
       posts.clear();
-     // posts.addAll(mapPosts.values);
+      posts.addAll(mapPosts.values);
     });
   }
 

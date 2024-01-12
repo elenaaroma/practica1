@@ -40,8 +40,6 @@ class PostCellView extends StatelessWidget{
    )
    ;
 
-     Text(sText ,
-         style: TextStyle(color: Colors.amber[iColorCode]));
   }
 
 }
