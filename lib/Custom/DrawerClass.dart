@@ -31,7 +31,7 @@ class DrawerClass extends StatelessWidget{
             leading: Image.asset(DataHolder().plAdmin.getImage("gatete.jpg")),
             selectedColor: Colors.deepOrangeAccent,
             selected: true,
-            title: const Text('Apartado 1'),
+            title: const Text('Cerrar sesion'),
             onTap: () {
               onItemTap!(0);
 
@@ -39,11 +39,18 @@ class DrawerClass extends StatelessWidget{
           ),
           ListTile(
             leading: Icon(Icons.accessible_forward_rounded, color: Colors.red),
-            title: const Text('Apartado 2'),
+            title: const Text('Salir de la aplicacion'),
             onTap: () {
               onItemTap!(1);
             },
           ),
+          ListTile(
+              leading: const Icon(Icons.search, color: Colors.red),
+              title: const Text('Buscar post'),
+              onTap: () {
+                onItemTap!(2);
+                },
+          )
         ],
       ),
     );
