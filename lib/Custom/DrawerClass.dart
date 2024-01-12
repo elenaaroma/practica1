@@ -64,7 +64,14 @@ class DrawerClass extends StatelessWidget{
             onTap: (){
               onItemTap!(4);
             },
-          )
+          ),
+          ListTile(
+            leading: Icon(Icons.chat, color: Colors.red),
+            title: const Text ('Chistes api'),
+            onTap: (){
+              onItemTap!(5);
+            },
+          ),
         ],
       ),
     );

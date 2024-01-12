@@ -182,8 +182,30 @@ class _HomeViewState extends State<HomeView>{
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Image.network(gato, height: 300),
-                ],
-              ),
+                ]),
+                actions: [
+                  TextButton(
+                      child: Text('Cerrar'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      }
+                  )]
+            );
+          }
+        );
+      } else if(indice == 5) {
+        String chiste = await DataHolder().httpAdmin.getDadJoke();
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Chiste'),
+              content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(chiste)
+                  ]),
               actions: [
                 TextButton(
                   child: Text('Cerrar'),
