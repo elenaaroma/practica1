@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:app/Custom/BottomMenu.dart';
 import 'package:app/Custom/DrawerClass.dart';
 import 'package:app/Custom/PostCellView.dart';
-import 'package:app/Custom/DrawerClass.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:app/Custom/PostGridCellView.dart';
 import 'package:app/FirestoreObjects/FbPost.dart';
 import 'package:app/OnBoarding/LoginView.dart';
@@ -45,98 +45,132 @@ class _HomeViewState extends State<HomeView>{
 
   void fHomeViewDrawerOnTap(int indice){
     print("->>>>>>>>>>>>" + indice.toString());
-    if (indice == 0){
-      FirebaseAuth.instance.signOut();
-      Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (BuildContext context) => LoginView()),
-          ModalRoute.withName('/logingview'));
-      
-    }else if (indice == 1){
-      exit(0);
-    } else if(indice == 2) {
-      TextEditingController _searchController = TextEditingController();
+    setState(() async{
+      if (indice == 0){
+        FirebaseAuth.instance.signOut();
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (BuildContext context) => LoginView()),
+            ModalRoute.withName('/logingview'));
 
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Buscar Post por Título'),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  controller: _searchController,
-                  decoration: const InputDecoration(
-                    hintText: 'Ingrese el título a buscar',
-                    contentPadding: EdgeInsets.all(16.0),
+      }else if (indice == 1){
+        exit(0);
+      } else if(indice == 2) {
+        TextEditingController _searchController = TextEditingController();
+
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Buscar Post por Título'),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: _searchController,
+                    decoration: const InputDecoration(
+                      hintText: 'Ingrese el título a buscar',
+                      contentPadding: EdgeInsets.all(16.0),
+                    ),
                   ),
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    String searchValue = _searchController.text.trim();
-                    if (searchValue.isNotEmpty) {
-                      Navigator.of(context).pop();
+                  ElevatedButton(
+                    onPressed: () async {
+                      String searchValue = _searchController.text.trim();
+                      if (searchValue.isNotEmpty) {
+                        Navigator.of(context).pop();
 
-                      List<Map<String, dynamic>> searchResults =
-                      await DataHolder().fbadmin.getPostByTitle(searchValue);
+                        List<Map<String, dynamic>> searchResults =
+                        await DataHolder().fbadmin.getPostByTitle(searchValue);
 
-                      if (searchResults.isNotEmpty) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                  title: Text('Resultados de la Búsqueda'),
-                                  content: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        for (var result in searchResults)
-                                          Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('título: ${result['titulo']}'),
-                                                Text('cuerpo: ${result['cuerpo']}'),
-                                              ])
-                                      ]),
-                                  actions: [
-                                    TextButton(
-                                        child: Text('Aceptar'),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        }
-                                    )]
-                              );
-                            }
-                        );
-                      } else {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                  title: Text('Resultados de la Búsqueda'),
-                                  content: Text('No se encontraron posts con el título proporcionado.'),
-                                  actions: [
-                                    TextButton(
-                                        child: Text('Aceptar'),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        }
-                                    )]
-                              );
-                            }
-                        );
+                        if (searchResults.isNotEmpty) {
+                          showDialog(context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                    title: Text('Resultados de la Búsqueda'),
+                                    content: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          for (var result in searchResults)
+                                            Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text('título: ${result['titulo']}'),
+                                                  Text('cuerpo: ${result['cuerpo']}'),
+                                                ])
+                                        ]),
+                                    actions: [
+                                      TextButton(
+                                          child: Text('Aceptar'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          }
+                                      )]
+                                );
+                              }
+                          );
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                    title: Text('Resultados de la Búsqueda'),
+                                    content: Text('No se encontraron posts con el título proporcionado.'),
+                                    actions: [
+                                      TextButton(
+                                          child: Text('Aceptar'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          }
+                                      )]
+                                );
+                              }
+                          );
+                        }
                       }
-                    }
+                    },
+                    child: Text('Buscar'),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      }
+      else if (indice == 3){
+        Position currentPosition = await DataHolder().geolocAdmin.registrarCambiosLoc();
+        GeoPoint currentGeoPoint = GeoPoint(currentPosition.latitude, currentPosition.longitude);
+        await DataHolder().geolocAdmin.agregarUbicacionEnFirebase(currentGeoPoint);
+        List<String> usersInRange = await DataHolder().geolocAdmin.obtenerUsuariosEnRango();
+
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Usuarios en rango de 5 km:'),
+              content: Column(
+                children: usersInRange
+                    .map(
+                      (userId) => Text(
+                    userId ?? 'Usuario sin ID',
+                    // 'Usuario sin ID' se mostrará si userId es nulo
+                  ),
+                )
+                    .toList(),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('Cerrar'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
                   },
-                  child: Text('Buscar'),
                 ),
               ],
-            ),
-          );
-        },
-      );
-    }
+            );
+          },
+        );
+      }
+    });
   }
 
   @override
