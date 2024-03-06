@@ -29,7 +29,7 @@ class PostGridCellView extends StatelessWidget{
       child:Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage("https://previews.123rf.com/images/aprillrain/aprillrain2212/aprillrain221200612/196177803-imagen-de-caricatura-de-un-astronauta-sentado-en-una-luna-ilustraci%C3%B3n-de-alta-calidad.jpg");
+            image: NetworkImage("https://previews.123rf.com/images/aprillrain/aprillrain2212/aprillrain221200612/196177803-imagen-de-caricatura-de-un-astronauta-sentado-en-una-luna-ilustraci%C3%B3n-de-alta-calidad.jpg"),
           )
         ),
           color: Colors.amber[iColorCode],
